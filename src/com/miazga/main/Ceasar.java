@@ -5,7 +5,7 @@ public class Ceasar implements ICrypt {
     private String text;
     private int password;
 
-    public Ceasar (String text, int password) {
+    Ceasar(String text, int password) {
         this.text = text;
         this.password = password;
     }
