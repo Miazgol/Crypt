@@ -1,5 +1,6 @@
 package com.miazga.main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -15,29 +16,38 @@ public class Main {
         int password;
         String result;
 
-        System.out.println("Choose the operation \"encrypt\" or \"decrypt\"");
-        String operation = operationScanner.nextLine();
+        try {
+            System.out.println("Choose the operation \"encrypt\" or \"decrypt\"");
+            String operation = operationScanner.nextLine();
 
-        if (operation.equals("encrypt")) {
+            switch (operation) {
+                case "encrypt":
+                    System.out.println("Write text to encrypt");
+                    text = textScanner.nextLine();
+                    System.out.println("Put the password");
+                    password = passwordScanner.nextInt();
+                    ceasar = new Ceasar(text, password);
+                    result = ceasar.encrypt();
+                    System.out.println(result);
+                    break;
 
-            System.out.println("Write text to encrypt");
-            text = textScanner.nextLine();
-            System.out.println("Put the password");
-            password = passwordScanner.nextInt();
-            ceasar = new Ceasar(text, password);
-            result = ceasar.encrypt();
-            System.out.println(result);
-        }
+                case "decrypt":
+                    System.out.println("Write text to decrypt");
+                    text = textScanner.nextLine();
+                    System.out.println("Put the password");
+                    password = passwordScanner.nextInt();
+                    ceasar = new Ceasar(text, password);
+                    result = ceasar.decrypt();
+                    System.out.println(result);
+                    break;
 
-        if (operation.equals("decrypt")) {
-
-            System.out.println("Write text to decrypt");
-            text = textScanner.nextLine();
-            System.out.println("Put the password");
-            password = passwordScanner.nextInt();
-            ceasar = new Ceasar(text, password);
-            result = ceasar.decrypt();
-            System.out.println(result);
+                default:
+                    System.out.println("You choose wrong operations");
+                    break;
+            }
+        } catch (InputMismatchException exception) {
+            System.out.println("You write wrong password");
         }
     }
 }
+
