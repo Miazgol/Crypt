@@ -24,9 +24,11 @@ public class Main {
                 case "encrypt":
                     System.out.println("Write text to encrypt");
                     text = textScanner.nextLine();
+                    String[] parm = text.split(" ");
+                    String connectText = builderText(parm);
                     System.out.println("Put the password");
                     password = passwordScanner.nextInt();
-                    ceasar = new Ceasar(text, password);
+                    ceasar = new Ceasar(connectText, password);
                     result = ceasar.encrypt();
                     System.out.println(result);
                     break;
@@ -34,9 +36,11 @@ public class Main {
                 case "decrypt":
                     System.out.println("Write text to decrypt");
                     text = textScanner.nextLine();
+                    parm = text.split(" ");
+                    connectText = builderText(parm);
                     System.out.println("Put the password");
                     password = passwordScanner.nextInt();
-                    ceasar = new Ceasar(text, password);
+                    ceasar = new Ceasar(connectText, password);
                     result = ceasar.decrypt();
                     System.out.println(result);
                     break;
@@ -48,6 +52,16 @@ public class Main {
         } catch (InputMismatchException exception) {
             System.out.println("You write wrong password");
         }
+    }
+
+    private static String builderText(String[] parm) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String aParm : parm) {
+            stringBuilder
+                    .append(aParm)
+                    .append(' ');
+        }
+        return stringBuilder.toString();
     }
 }
 
